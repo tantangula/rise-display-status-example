@@ -31,9 +31,9 @@ var app = angular.module('displayAdmin', []);
 
 app.controller('displayCtrl', function($scope,$window)
   {
-    $scope.ROOT = 'https://rvaserver2.appspot.com/_ah/api'; //Api for github pages
+    $scope.ROOT = 'https://rvaserver2.appspot.com/_ah/api';
     $scope.config = {
-        'client_id': '483891519638-4u9kfl02ni1ts9rhdejdcdb55itq038e.apps.googleusercontent.com',
+        'client_id': '483891519638-yourtokenhere.apps.googleusercontent.com',
         'scope': 'email',
         'immediate': false,
         'cookie_policy': 'single_host_origin'
