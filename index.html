@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+    <script src="auth.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/spin.js/1.2.7/spin.min.js"></script>
+
+    <script src="https://apis.google.com/js/client.js?onload=init"></script>
+    <style>
+        @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600italic);
+        body {
+            font-family: 'Open Sans', sans-serif;
+        }
+        italic {
+            font-style: italic;
+        }
+        div {
+          margin-bottom:25px;
+          margin-left:25px;
+        }
+        #loading {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            height: 100%;
+            width: 100%;
+            z-index: 4;
+            background-color:white;
+            opacity:.9;
+        }
+    </style>
+</head>
+
+<body ng-app="displayAdmin">
+    <div ng-controller="displayCtrl">
+      <div id="loading" ng-hide="hideSpinner"></div>
+      <h1 ng-show="showNames">{{companyName}}</h1>
+      <p ng-show="showNames">Logged in as: {{userName}}</p>
+      <h2 ng-click="getDisplays()" ng-show="showDisplayTitle">Displays</h2>
+      <ul>
+        <li ng-repeat="display in displays" ng-show="showDisplays">
+          <h3 ng-click="getDisplayInfo(display)">{{display.name}} - {{display.id}}</h3>
+            <div ng-show="display.showInfo">
+              <p><italic>Presentations</italic></p>
+              <ul>
+                <li ng-repeat="presentation in display.currentPresentations">
+                  <a href="http://preview.risevision.com/Viewer.html?type=presentation&id={{presentation.id}}" target="_blank"><p>{{presentation.name}}</a> - {{presentation.id}}</p>
+                </li>
+              </ul>
+              <p><italic>Status:</italic> {{display.onlineStatus}}</p>
+              <p><italic>Last Online:</italic> {{display.lastActivityDate}}</p>
+              <!--<p>Schedule: {{display.currentScheduleName}} - {{display.currentScheduleId}}</p>-->
+            </div>
+        </li>
+      </ul>
+      <!--<h3 ng-click="getPresentations()" ng-show="showPresentationTitle">-Presentations</h3>
+      <ul>
+        <li ng-repeat="presentation in presentations" ng-show="showPresentations">
+          <p><a href="http://preview.risevision.com/Viewer.html?type=presentation&id={{presentation.id}}" target="_blank">{{presentation.name}}</a></p>
+        </li>
+      </ul>-->
+    </div>
+</body>
+
+</html>
